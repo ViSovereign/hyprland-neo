@@ -35,8 +35,8 @@ ColumnLayout {
 
     Rectangle {
         id: rect
-        width: 40
-        height: 80
+        width: 38
+        height: 77
         color: Matugen.colors.on_primary_container
         Layout.alignment: Qt.AlignHCenter
         radius: 10
@@ -65,10 +65,10 @@ ColumnLayout {
                 onReleased: timecolumn.scale = 1.0
 
                 onEntered: {
-                    hourText.color = Matugen.colors.on_secondary
-                    timeText.color = Matugen.colors.on_secondary
-                    colonText.color = Matugen.colors.on_secondary
-                    rect.color = Matugen.colors.on_secondary_container
+                    hourText.color = Matugen.colors.on_tertiary
+                    timeText.color = Matugen.colors.on_tertiary
+                    colonText.color = Matugen.colors.on_tertiary
+                    rect.color = Matugen.colors.on_tertiary_container
                     hoverAnimation.target = rect
                     hoverAnimation.start();
 
@@ -101,7 +101,7 @@ ColumnLayout {
                     }
                 }
                 color: Matugen.colors.background
-                font.pixelSize: 30
+                font.pixelSize: 28
                 font.family: "MesloLGM Nerd Font Propo"
                 opacity: 1.0
 
@@ -140,7 +140,7 @@ ColumnLayout {
                 id: timeText
                 text: Qt.formatTime(root.now, "mm")
                 color: Matugen.colors.background
-                font.pixelSize: 30
+                font.pixelSize: 28
                 font.family: "MesloLGM Nerd Font Propo"
                 Layout.alignment: Qt.AlignHCenter
                 opacity: 1.0
