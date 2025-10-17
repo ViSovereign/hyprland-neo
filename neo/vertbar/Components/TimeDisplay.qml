@@ -36,10 +36,12 @@ ColumnLayout {
     Rectangle {
         id: rect
         width: 40
-        height: 70
-        color: Matugen.colors.on_tertiary
+        height: 80
+        color: Matugen.colors.on_primary_container
         Layout.alignment: Qt.AlignHCenter
-        radius: 5
+        radius: 10
+        border.color: Matugen.colors.on_secondary
+        border.width: 1
 
         // TIME SECTION
         ColumnLayout {
@@ -63,20 +65,20 @@ ColumnLayout {
                 onReleased: timecolumn.scale = 1.0
 
                 onEntered: {
-                    hourText.color = Matugen.colors.on_primary_container
-                    timeText.color = Matugen.colors.on_primary_container
-                    colonText.color = Matugen.colors.on_primary_container
-                    rect.color = Matugen.colors.on_primary
+                    hourText.color = Matugen.colors.on_secondary
+                    timeText.color = Matugen.colors.on_secondary
+                    colonText.color = Matugen.colors.on_secondary
+                    rect.color = Matugen.colors.on_secondary_container
                     hoverAnimation.target = rect
                     hoverAnimation.start();
 
                 }
 
                 onExited: {
-                    hourText.color = Matugen.colors.on_tertiary_container
-                    timeText.color = Matugen.colors.on_tertiary_container
-                    colonText.color = Matugen.colors.on_tertiary_container
-                    rect.color = Matugen.colors.on_tertiary
+                    hourText.color = Matugen.colors.background
+                    timeText.color = Matugen.colors.background
+                    colonText.color = Matugen.colors.background
+                    rect.color = Matugen.colors.on_primary_container
                     exitAnimation.target = rect
                     exitAnimation.start();
                 }
@@ -98,8 +100,8 @@ ColumnLayout {
                         return (h12 < 10 ? "0" : "") + h12
                     }
                 }
-                color: Matugen.colors.on_tertiary_container
-                font.pixelSize: 26
+                color: Matugen.colors.background
+                font.pixelSize: 30
                 font.family: "MesloLGM Nerd Font Propo"
                 opacity: 1.0
 
@@ -113,7 +115,7 @@ ColumnLayout {
             Text {
                 id: colonText
                 text: ".."
-                color: Matugen.colors.on_tertiary_container
+                color: Matugen.colors.background
                 Layout.alignment: Qt.AlignHCenter
                 font.pixelSize: 10
                 font.family: "MesloLGM Nerd Font Propo"
@@ -137,8 +139,8 @@ ColumnLayout {
             Text {
                 id: timeText
                 text: Qt.formatTime(root.now, "mm")
-                color: Matugen.colors.on_tertiary_container
-                font.pixelSize: 26
+                color: Matugen.colors.background
+                font.pixelSize: 30
                 font.family: "MesloLGM Nerd Font Propo"
                 Layout.alignment: Qt.AlignHCenter
                 opacity: 1.0

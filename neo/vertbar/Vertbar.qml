@@ -94,7 +94,7 @@ PanelWindow {
         color: Matugen.colors.background
         opacity: 0.75
         radius: 10
-        border.color: Matugen.colors.on_tertiary
+        border.color: Matugen.colors.surface_dim
         border.width: 0
 
         Component.onCompleted: {

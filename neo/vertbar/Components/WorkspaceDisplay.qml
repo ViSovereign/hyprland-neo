@@ -222,6 +222,6 @@ ColumnLayout {
     // Deep Link to Hypr Keybind Extension in vicinae
     Process {
         id: deepLinkKeyBinds
-        command: ["sh", "-c", "vicinae vicinae://extensions/sovereign/hypr-keybinds/hyprland-keybinds"]
+        command: ["sh", "-c", "vicinae vicinae://extensions/vicinae/wm/switch-windows"]
     }
 }

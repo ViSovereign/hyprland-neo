@@ -57,18 +57,18 @@ ColumnLayout {
 
         onEntered: {
             hoverAnimation.targets = [canvas, letterlabel]
-            hoverAnimation.start();          
+            hoverAnimation.start();
             rotateAnimation.target = letterlabel
-            rotateAnimation.start();            
+            rotateAnimation.start();
             hoverover = true
         }
 
         onExited: {
             exitAnimation.targets = [canvas, letterlabel]
-            exitAnimation.start();           
+            exitAnimation.start();
             hoverover = false
         }
-        
+
         // Change the cursor
         cursorShape: Qt.PointingHandCursor
 
@@ -97,7 +97,7 @@ ColumnLayout {
             SequentialAnimation {
                 running: true
                 loops: Animation.Infinite
-                
+
                 PauseAnimation { duration: 0 }
 
                 OpacityAnimator {
@@ -121,7 +121,7 @@ ColumnLayout {
             id: "letterlabel"
             anchors.centerIn: canvas
             text: "memory"
-            color: sysResourceDisplay.cpuUsage > 80 ? Matugen.colors.error : 
+            color: sysResourceDisplay.cpuUsage > 80 ? Matugen.colors.error :
                 sysResourceDisplay.cpuUsage > 50 ? Matugen.colors.on_tertiary_container : Matugen.colors.on_primary_container
             font.pixelSize: 22
             font.family: "Material Symbols Rounded"
@@ -146,7 +146,7 @@ ColumnLayout {
                 property: "animatedUsage"
                 duration: 2000
                 easing.type: Easing.InOutQuad
-            }            
+            }
 
             onPaint: {
                 var ctx = getContext("2d")
@@ -155,26 +155,26 @@ ColumnLayout {
                 var radius = Math.min(width, height) / 2 - 5
                 var startAngle = Math.PI / 2
                 var endAngle = startAngle + (animatedUsage / 100) * 2 * Math.PI
-                
+
                 // Clear canvas
                 ctx.clearRect(0, 0, width, height)
-                
+
                 // Background circle
                 ctx.beginPath()
                 ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI)
                 ctx.strokeStyle = Matugen.colors.on_secondary
                 ctx.lineWidth = 3
                 ctx.stroke()
-                
+
                 // CPU usage arc
                 ctx.beginPath()
                 ctx.arc(centerX, centerY, radius, startAngle, endAngle)
-                ctx.strokeStyle = animatedUsage > 80 ? Matugen.colors.error : 
+                ctx.strokeStyle = animatedUsage > 80 ? Matugen.colors.error :
                                 animatedUsage > 50 ? Matugen.colors.on_tertiary_container : Matugen.colors.on_primary_container
                 ctx.lineWidth = 4
                 ctx.lineCap = "round"
                 ctx.stroke()
-                
+
             }
 
             onAnimatedUsageChanged: {
@@ -195,8 +195,9 @@ ColumnLayout {
     // CPU monitoring process
     Process {
         id: cpuProcess
-        command: ["sh", "-c", "grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$3+$4+$5)} END {print usage}'"]
-        
+        //command: ["sh", "-c", "grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$3+$4+$5)} END {print usage}'"]
+        command: ["sh", "-c", "awk '/^cpu / {usage=($2+$4+$6)*100/($2+$3+$4+$5+$6+$7+$8+$9+$10)} END {print usage}' /proc/stat"]
+
         stdout: StdioCollector {
             onStreamFinished: {
                 //console.log(this.text.trim());
@@ -209,7 +210,7 @@ ColumnLayout {
     Process {
         id: cpuTemp
         command: ["/home/b/.config/quickshell/neo/scripts/cputemp.sh"]
-        
+
         stdout: StdioCollector {
             onStreamFinished: {
                 sysResourceDisplay.cpuTemp = this.text.trim()
