@@ -158,6 +158,7 @@ PanelWindow {
                 Layout.alignment: Qt.AlignHCenter
                 onCalendarRequested: calendarPopup.toggle()
                 opacity: 0.0
+                Layout.bottomMargin: 5
             }
 
             TimeDisplay {

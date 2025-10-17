@@ -106,9 +106,9 @@ ColumnLayout {
         onExited: {
             exitAnimation.target = workspaceDisplay
             monitorIcon.color = Matugen.colors.on_primary_container
-            activeMonitorText.color = Matugen.colors.on_background
+            activeMonitorText.color = Matugen.colors.background
             activeWorkSpacetext.color = Matugen.colors.on_primary_container
-            activeMonitorRectange.color = Matugen.colors.on_primary
+            activeMonitorRectange.color = Matugen.colors.on_primary_container
             exitAnimation.start();
         }
 
@@ -134,7 +134,7 @@ ColumnLayout {
             anchors.centerIn: parent
             anchors.verticalCenterOffset: -2
             anchors.horizontalCenterOffset: -1
-            color: Matugen.colors.on_primary
+            color: Matugen.colors.on_primary_container
             width: 22
             height: 16
         }
@@ -153,7 +153,7 @@ ColumnLayout {
             id: "activeMonitorText"
             anchors.centerIn: parent
             text: workspaceDisplay.currentMonitor.replace("DP-", "")
-            color: Matugen.colors.on_primary_container
+            color: Matugen.colors.background
             font.pixelSize: 12
             font.bold: true
             font.family: "MesloLGM Nerd Font Propo"
